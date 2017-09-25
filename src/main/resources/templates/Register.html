@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" th:xmlns="www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row justify-content-md-center">
+        <h2 >Register</h2>
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="col-md-6">
+            <form th:action="@{/register}" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input th:field="${user.email}" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <p th:if="${#fields.hasErrors('user.email')}" th:errors="${user.email}" class="text-danger">Email error</p>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input th:field="${user.password}" type="password" class="form-control" id="password" placeholder="Password">
+                    <p th:if="${#fields.hasErrors('user.password')}" th:errors="${user.password}" class="text-danger">Password error</p>
+                </div>
+                <div class="form-group">
+                    <label for="password">Confirm Password</label>
+                    <input th:field="${user.repeatedPassword}" type="password" class="form-control" id="repeatedPassword" placeholder="Retype Password">
+                    <p th:if="${#fields.hasErrors('user.repeatedPassword')}" th:errors="${user.repeatedPassword}" class="text-danger">Repeated Password error</p>
+                    <p th:text="${passwordError}" class="text-danger"></p>
+                </div>
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input th:field="${personalInfo.firstName}" type="text" class="form-control" id="firstName" placeholder="Ex: John">
+                    <p th:if="${#fields.hasErrors('personalInfo.firstName')}" th:errors="${personalInfo.firstName}" class="text-danger">FirstName error</p>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input th:field="${personalInfo.lastName}" type="text" class="form-control" id="lastName" placeholder="Ex: Doe">
+                    <p th:if="${#fields.hasErrors('personalInfo.lastName')}" th:errors="${personalInfo.lastName}" class="text-danger">LastName error</p>
+                </div>
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input th:field="${personalInfo.city}" type="text" class="form-control" id="city" placeholder="Ex: Bangalore">
+                    <p th:if="${#fields.hasErrors('personalInfo.city')}" th:errors="${personalInfo.city}" class="text-danger">City error</p>
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input th:field="${personalInfo.dob}" type="date"  class="form-control" id="dob">
+                    <p th:if="${#fields.hasErrors('personalInfo.dob')}" th:errors="${personalInfo.dob}" class="text-danger">DOB error</p>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label><br>
+                    <input type="radio" name="gender" id="gender" value="Male" checked>Male<br>
+                    <input type="radio" name="gender" id="gender" value="Female">Female
+                </div>
+                <div class="form-group">
+                    <label for="comment">Tell us more about yourself:</label>
+                    <textarea class="form-control" rows="5" id="comment" th:field="${profileInfo.moreAboutUser}"></textarea>
+                    <p th:if="${#fields.hasErrors('profileInfo.moreAboutUser')}" th:errors="${profileInfo.moreAboutUser}" class="text-danger">DOB error</p>
+                </div>
+                <div>
+                    <p>Select a pic</p>
+                    <input type="file" name="pic">
+                </div>
+                <input type="submit" value="Register" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+</div>
+<script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>
